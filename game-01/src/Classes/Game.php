@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 class Game extends GameAbstract {
 
+    private $subSet = [];
+
     /**
      * Function to find the first subset of 2 numbers of $mainSet
      * 
@@ -10,15 +12,21 @@ class Game extends GameAbstract {
      * 
      * @return Array
      */
-    public function getSubset(Int $value): Array
+    public function getSubset(Int $value)
     {
-        for ($i = 0; $i <= count($this->mainSet)-1; $i++) {
-            for ($j = $i+1; $j <= count($this->mainSet); $j++) {
-                if ($this->mainSet[$i] + $this->mainSet[$j] == $value) {
-                    return [$this->mainSet[$i], $this->mainSet[$j]];
-                }
+        array_walk_recursive($this->mainSet, function ($val, $key) use($value) {
+            if ($key < count($this->mainSet)-1) {
+                array_walk_recursive($this->mainSet, function ($val2, $key2) use($key, $value) {
+                    if ($key2+$key+1 < count($this->mainSet)) {
+                        if ($this->mainSet[$key] + $this->mainSet[$key2+$key+1] == $value) {
+                            $this->subSet = [$this->mainSet[$key], $this->mainSet[$key2+$key+1]];
+                            return;
+                        } 
+                    }
+                });
             }
-        }
-        return [];
+        });
+        return $this->subSet;
     }
+
 }

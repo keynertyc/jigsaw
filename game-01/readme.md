@@ -4,3 +4,14 @@ Let M be a not empty set of integer numbers, find the first subset of 2 numbers 
 
 ## Challenge
 You're required to create a function that receives an array (M) and integer value (N). This function has to return an array of the first possible solution.
+
+## Solution
+
+- I created an Interface, an Abstract Class and a Game Class.
+- I used PHPUnit to test. (tests/GameTest.php)
+
+## Run
+
+1. php composer.phar install
+2. php composer.phar dump-autoload
+3. ./vendor/bin/phpunit tests/GameTest.php

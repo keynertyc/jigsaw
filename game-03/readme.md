@@ -50,3 +50,7 @@ Just for clarification, an item can never have its Quality increase above 50. Ho
 
 1. Refactor the monstrous code in the `GildedRose.php` class.
 2. Add a new item type, "Conjured". The specs for this item are commented out in the `GildedRoseSpec.php` file.
+
+## Solution
+
+I used "Abstract Factory Pattern" to refactor the code. Check my code.

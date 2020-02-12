@@ -26,7 +26,7 @@ I think you have 2 options:
 
 - Implement RETRY PATTERN: With that, YOLO will invoke service and if the request fails, Application will wait for a short interval and tries again; if the request fails again, the application will wait for a longer interval and tries again.
 
-[Imgur](https://imgur.com/Tr0YBp7)
+![Imgur](https://i.imgur.com/Tr0YBp7.png)
 
 If a failure is expected to be more long lasting, it may be more appropriate to implement the Circuit Breaker Pattern.
 

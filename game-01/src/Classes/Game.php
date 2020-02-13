@@ -14,12 +14,16 @@ class Game extends GameAbstract {
      */
     public function getSubset(Int $value)
     {
-        array_walk_recursive($this->mainSet, function ($val, $key) use($value) {
-            if ($key < count($this->mainSet)-1) {
-                array_walk_recursive($this->mainSet, function ($val2, $key2) use($key, $value) {
-                    if ($key2+$key+1 < count($this->mainSet)) {
-                        if ($this->mainSet[$key] + $this->mainSet[$key2+$key+1] == $value) {
-                            $this->subSet = [$this->mainSet[$key], $this->mainSet[$key2+$key+1]];
+        $mainSetFiltered = array_filter($this->mainSet, function($val) use($value) {
+            return ($val <= $value);
+        });
+
+        array_walk_recursive($mainSetFiltered, function ($val, $key) use($mainSetFiltered, $value) {
+            if ($key < count($mainSetFiltered)-1) {
+                array_walk_recursive($mainSetFiltered, function ($val2, $key2) use($mainSetFiltered, $key, $value) {
+                    if ($key2+$key+1 < count($mainSetFiltered)) {
+                        if ($mainSetFiltered[$key] + $mainSetFiltered[$key2+$key+1] == $value) {
+                            $this->subSet = [$mainSetFiltered[$key], $mainSetFiltered[$key2+$key+1]];
                             return;
                         } 
                     }
